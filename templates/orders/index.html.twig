@@ -11,7 +11,7 @@
 
 
 {% block body %}
-	{% for i in 0..10 %}
-        {% include "components/order/index.html.twig" with {"id": "order_" ~ i}  %}
+	{% for order in orders %}
+        {% include "components/order/index.html.twig" with {"id": "order_" ~ loop.index0, "order": order}  %}
 	{% endfor %}
 {% endblock %}

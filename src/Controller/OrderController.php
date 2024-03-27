@@ -19,6 +19,18 @@ class OrderController extends AbstractController
     {
         $session = $request->getSession();
 
+        for($i = 0; $i < 10; $i++)
+        {
+            $order = [
+                'id' => $i,
+                'products' => [
+                    'product1',
+                    'product2',
+                ],
+            ];
+            $this->addOrder($order);
+        }
+
         return $this->render('orders/index.html.twig', [
             'orders' => $this->getOrders(),
         ]);
