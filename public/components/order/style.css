@@ -1,0 +1,40 @@
+.order {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+}
+
+
+.orderHeader {
+    border-style: solid;
+    border-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    
+}
+
+.orderProduct {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.orderProductHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+    border-style: solid;
+    border-color: red;
+}
+
+.orderProductBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-style: solid;
+    border-color: red;
+}

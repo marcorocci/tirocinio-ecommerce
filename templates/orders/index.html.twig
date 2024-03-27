@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}Orders{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="/components/order/style.css">
+{% endblock %}
+
+
+
+
+
+{% block body %}
+	{% for i in 0..10 %}
+        {% include "components/order/index.html.twig" with {"id": "order_" ~ i}  %}
+	{% endfor %}
+{% endblock %}
