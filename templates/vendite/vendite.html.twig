@@ -1,5 +1,17 @@
-{% extends "base.html.twig" %}
+{% set cartProd = cartProd|length %}
+{% extends 'base.html.twig' %}
 {% block body %}
-    <h1 class="m-5" id="mese"></h1>
-    <div id="chart" style="" class="m-5"></div>
+<script>
+	const dataAndamento = JSON.parse('{{data|raw}}')
+</script>
+	<h1 class="m-5" id="mese"></h1>
+	<div id="chart" style="" class="m-5"></div>
+	<h1>Vendite Annuali</h1>
+	<div id="barchart" style="height:300px;" class="m-5"></div>
+{% endblock %}
+{% block javascripts %}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	<script src="/scripts/graphs.js"></script>
 {% endblock %}

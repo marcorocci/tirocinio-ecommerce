@@ -1,4 +1,68 @@
+{% set cartProd = products|length %}
 {% extends "base.html.twig" %}
+{% block javascripts %}
+	<script src = 'scripts/counter.js'></script>
+{% endblock %}
 {% block body %}
-    <h1>Carrello</h1>
+	<h1 class="fw-bold">Carrello</h1>
+
+	{% if products|length == 0 %}
+		<h5>Hai {{products|length}} prodotti nel carrello</h5>
+		<h3>Non ci sono prodotti nel carrello</h3>
+	{% endif %}
+	{% if products|length > 0 %}
+		<div class="nprod px-5">
+			<h5>Hai {{products|length}} prodotti nel carrello</h5>
+		</div>
+
+		<div class="products px-5">
+			{% for product in products %}
+			<li class="list-group-item custom">
+				<div class="name">
+					<h3>{{product.nome}}</h3>
+					<div style="width: 90px">
+						<img src="{{product.imagePath}}" alt="" width="90px">
+					</div>
+				</div>
+				<div class="txt">
+					<p>{{product.descrizione}}</p>
+				</div>
+                <div class="qtn">
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-success" id="meno">-</button>
+						<input type="number" class="number-input" value=1>
+						<button type="button" class="btn btn-success" id="piu">+</button>
+					</div>
+					
+					<div class="acquisto">
+						<h4>{{product.prezzo}}€</h4>
+						<button type="button" class="btn btn-danger">Rimuovi dal carrello</button>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</div>
+		<div class="recap px-5">
+			<div class="checkout">
+				<ul class="list-group">
+					<li class="list-group-item">Sub Totale:</li>
+					<li class="list-group-item">Spedizione:</li>
+					<li class="list-group-item">Codice Sconto:
+						<input type="text">
+						<button type="button" class="btn btn-success">Applica</button>
+					</li>
+					<li class="list-group-item">Totale: A catena</li>
+					<li class="list-group-item">
+                        <a href="{{path('app_checkout')}}">
+                            <button type="button" class="btn btn-success">Go To Check Out</button>
+                        </a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+	{% endif %}
+
+
 {% endblock %}

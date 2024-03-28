@@ -49,6 +49,7 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
+    min-height: 200px;
 }
 
 .txt {
@@ -56,13 +57,15 @@ h1 {
 }
 
 .name {
-    align-items: center;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    
 }
 
 .name>h3 {
-    margin: 0;
+    font-size: 1.2vw;
 }
 
 .acquisto {
@@ -98,4 +101,52 @@ a.active>i.badge {
     padding: 3px 6px;
     position: relative;
     top: -15px;
+}
+
+.checkout {
+    width: 40%;
+    display: flex;
+    justify-content: end;
+} 
+
+.recap {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+.nprod{
+    display: flex;
+    justify-content: end;
+}
+
+
+.lh-condensed { line-height: 1.25; }
+
+.qtn {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+
+input[type=number] {
+    appearance: textfield;
+    width: 20px;
+    border: none;
+    text-align: center;
+    border: 1px solid green;
+    width: 3rem;
+}
+
+input[type=number]:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

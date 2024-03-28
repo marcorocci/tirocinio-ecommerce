@@ -5,3 +5,22 @@
 orders:
     path: /orders
     controller: App\Controller\OrderController::index
+app_prodotti:
+    path: /
+    controller: App\Controller\HomeController::prodotti
+
+app_vendite:
+    path: /vendite
+    controller: App\Controller\VenditeController::vendite
+
+app_cart:
+    path: /cart
+    controller: App\Controller\CarrelloController::cart
+
+app_checkout:
+    path: /checkout
+    controller: App\Controller\CheckoutController::checkout
+
+app_andamento:
+    path: /andamento
+    controller: App\Controller\AndamentoProdottiController::andamento

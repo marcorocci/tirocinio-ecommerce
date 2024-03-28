@@ -1,67 +1,59 @@
+{% set cartProd = cartProd|length %}
 {% extends "base.html.twig" %}
+{% block javascripts %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="scripts/searchFeature.js"></script>
+{% endblock %}
+
 {% block body %}
-    <h1 class="fw-bold">Prodotti</h1>
-<div class="dropdown px-5">
+	
+	<h1 class="fw-bold ">Prodotti</h1>
+	<div class="px-5">
+		<div class="cerca mx-4 px-4">
+			<div class="col">
+				<input id="searchbar" type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
+			</div>
+			<div class="dropdown mx-2">
+				<button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Categoria
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Prezzo
+				</button>
+				<ul class="dropdown-menu">
+					<li>
+						<a class="dropdown-item" href="#">0€ - 50€</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">50€ - 100€</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">100€ - 200€</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 
-    <div class="cerca mx-4 px-4">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
-        </div>
-        <div class="dropdown mx-2">
-            <button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Categoria
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">cat 1</a></li>
-                <li><a class="dropdown-item" href="#">cat 2</a></li>
-                <li><a class="dropdown-item" href="#">cat 3</a></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Prezzo
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">0€ - 50€</a></li>
-                <li><a class="dropdown-item" href="#">50€ - 100€</a></li>
-                <li><a class="dropdown-item" href="#">100€ - 200€</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="products px-5">
-
-            <ul class="list-group">
-        {% for key,img in imgs %}
-        
-                <li class="list-group-item custom">            
-                    <div class="name">
-                        <h3>{{nome[key]|capitalize}}</h3>
-                        <img src="{{img}}" alt="">
-                    </div>        
-                    <div class="txt">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias illo quibusdam harum numquam sit! Officiis doloremque fuga libero recusandae dolorem. Quo error perspiciatis illo ex voluptatem fugit magnam distinctio in!</p>
-                    </div>
-                    <div class="acquisto">
-                        <h4>{{prezzo[key]}}</h4>
-                        <button type="button" class="btn btn-success">Aggiungi al carrello <i class="fa">&#xf07a;</i></button>
-                    </div> 
-                </li>
-            {# <div>
-                <h3>{{nome[key]}}</h3>
-                <img src="{{img}}" alt="">
-            </div>        
-            <div class="txt">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias illo quibusdam harum numquam sit! Officiis doloremque fuga libero recusandae dolorem. Quo error perspiciatis illo ex voluptatem fugit magnam distinctio in!</p>
-            </div>
-            <div class="price">
-                <h4>{{prezzo[key]}}</h4>
-            </div>          #}
-        
-
-        {% endfor %}
-            </ul>
-    </div>
-          
-</div>
+		<div class="products px-5">
+			<ul class="list-group">
+				{% for product in products %}
+					{% include '/components/prodotto.html.twig' with {
+				                        img: product.imagePath, 
+				                        nome: product.nome, 
+				                        prezzo: product.prezzo,
+										descrizione: product.descrizione
+				                    } %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 {% endblock %}

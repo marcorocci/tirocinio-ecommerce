@@ -6,17 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Psr\Log\LoggerInterface;
+use App\Repository\CartRepository;
 
 class OrderController extends AbstractController
 {
     private $orders;
-    public function __construct()
+    private $cartRepository;
+    public function __construct(CartRepository $cartRepository)
     {
         $this->orders = [];
+        $this->cartRepository = $cartRepository;
     }
 
     public function index(Request $request): Response
     {
+        $result = $this->cartRepository->findByName();
         $session = $request->getSession();
 
         for($i = 0; $i < 10; $i++)
@@ -33,6 +37,7 @@ class OrderController extends AbstractController
 
         return $this->render('orders/index.html.twig', [
             'orders' => $this->getOrders(),
+            'cartProd' => count($result)
         ]);
     }
     /**
