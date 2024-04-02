@@ -43,12 +43,18 @@ new Morris.Area({
     lineColors: ['#198754', '#2A9FD6', '#C19A6B'],
 });
 
-new Morris.Bar ({
+
+new Morris.Bar({
     element: 'barchart',
     data: dataAndamento,
-    xkey: 'year',
-    ykeys: ['sales'],
-    labels: ['vendite annuali'],
-    barColors : ['#198754'],
-    barPercentage: 1
+    xkey: 'anno',
+    ykeys: ['prodotti_venduti'],
+    labels: ['Prodotti Venduti'],
+    barColors: ['#198754'],
+    barPercentage: 0.4,
+    hoverCallback: function(index, options, content) {
+        return options.data[index].nome;
+       
+    },
+    barLabelPadding: 10,
 });

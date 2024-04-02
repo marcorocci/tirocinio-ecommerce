@@ -2,7 +2,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <script>
-	const dataAndamento = JSON.parse('{{data|raw}}')
+	const dataAndamento = {{data|raw}}
+	console.log(dataAndamento)
 </script>
 	<h1 class="m-5" id="mese"></h1>
 	<div id="chart" style="" class="m-5"></div>
