@@ -19,9 +19,11 @@
 	</head>
 	<body>
 		{% include 'components/navbar.html.twig' with {'cartProd': cartProd}%}
-		
-		{% block body %}{% endblock %}
-		<footer class="footer bg-dark text-white fixed-bottom">
+		<div class="wrapper">
+			{% block body %}
+			{% endblock %}
+		</div>
+		<footer class="footer bg-dark text-white">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">

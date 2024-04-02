@@ -53,8 +53,6 @@ new Morris.Bar({
     barColors: ['#198754'],
     barPercentage: 0.4,
     hoverCallback: function(index, options, content) {
-        return options.data[index].nome;
-       
+        return options.data[index].nome; 
     },
-    barLabelPadding: 10,
 });
