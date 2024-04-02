@@ -63,3 +63,8 @@ from Vendite
 inner join prodotti on prodotti.id = Vendite.idProdotto
 group by year(dataVendita);
 
+
+
+
+
+
