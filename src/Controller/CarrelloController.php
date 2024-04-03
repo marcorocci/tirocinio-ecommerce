@@ -31,9 +31,23 @@ class CarrelloController extends AbstractController
     
     public function handlePost(Request $request) {
         $postData = $request->request->all();
-        $id = $postData["prodottoId"];
-        $info = $this->cartRepository->inserToCart($id); 
-        return $this ->json(['message' => 'Aggiunto all carrello']);
+        
+           
+        if(array_key_exists("prodottoId", $postData)){
+            
+            $id = $postData["prodottoId"];
+            $info = $this->cartRepository->inserToCart($id); 
+        }
+        else if (array_key_exists("idCarrello", $postData)){
+            
+            $id = $postData["idCarrello"];
+            $info = $this->cartRepository->removeFromCart($id); 
+        }
+
+        else {
+            return $this ->json(['message' => "Operazione non riuscita"]);
+        }
+        return $this ->json(['message' => "Operazionw riuscita"]);
     }
 }
 

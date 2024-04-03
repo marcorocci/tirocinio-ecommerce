@@ -22,6 +22,7 @@
 			{% for product in products %}
 			<li class="list-group-item custom">
 				<div class="name">
+					<span style="display: none;">{{product.id}}</span>
 					<h3>{{product.nome}}</h3>
 					<div style="width: 90px">
 						<img src="{{product.imagePath}}" alt="" width="90px">
@@ -39,7 +40,7 @@
 					
 					<div class="acquisto">
 						<h4>{{product.prezzo}}€</h4>
-						<button type="button" class="btn btn-danger">Rimuovi dal carrello</button>
+						<button type="button" class="btn btn-danger" id="removeFromCart">Rimuovi dal carrello</button>
 					</div>
 				</div>
 			</li>
@@ -72,4 +73,5 @@
 
 	{% block javascripts %}
 		<script src = 'scripts/counter.js'></script>
+		<script src = 'scripts/removeFromCart.js'></script>
 	{% endblock %}

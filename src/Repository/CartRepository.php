@@ -51,7 +51,7 @@ class CartRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            select nome, descrizione, prezzo, imagePath from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
+            select cart.id, nome, descrizione, prezzo, imagePath from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
             ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -95,6 +95,22 @@ class CartRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
+    public function removeFromCart($idCarrello) {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        DELETE FROM cart WHERE id = :idCarrello
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':idCarrello', $idCarrello);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    
 
 
 
