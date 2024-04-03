@@ -16,6 +16,9 @@
 						<a class="nav-link fw-bold fs-4 {{app.request.attributes.get('_route') == 'app_prodotti' ? 'active' : ''}}" aria-current="page" href="{{path("app_prodotti")}}">Home</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link fw-bold fs-4 {{app.request.attributes.get('_route') == 'orders' ? 'active' : ''}}" aria-current="page" href="{{path("orders")}}">Orders</a>
+					</li>					
+					<li class="nav-item">
 						<a class="nav-link fw-bold fs-4 {{app.request.attributes.get('_route') == 'app_vendite' ? 'active' : ''}}" aria-current="page" href="{{path("app_vendite")}}">Vendite</a>
 					</li>
 					<li class="nav-item">
