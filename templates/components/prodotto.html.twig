@@ -1,6 +1,7 @@
 <li class="list-group-item custom">
 	<div class="name">
 		<h3>{{nome}}</h3>
+		<span style="display: none;">{{id}}</span>
 		<div style="width: 90px">
             <img src="{{img}}" width="90px">
         </div>
@@ -10,7 +11,7 @@
 	</div>
 	<div class="acquisto">
 		<h4>{{prezzo}}€</h4>
-		<button type="button" class="btn btn-success">Aggiungi al carrello
+		<button type="button" class="btn btn-success" id="addtocart">Aggiungi al carrello
 			<i class="fa">&#xf07a;</i>
 		</button>
 		<span style="display: none;">{{categoria}}</span>
