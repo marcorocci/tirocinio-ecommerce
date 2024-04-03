@@ -17,9 +17,13 @@ class CarrelloController extends AbstractController
     }
 
     public function cart() {
-        $result = $this->cartRepository->findByName();
+        $result = $this->cartRepository->findByName(); 
+        $tot = $this->cartRepository->totalprice();
+        
         return $this->render("cart/cart.html.twig", [
-            "products" => $result
+            "products" => $result,
+            "tot"=> json_encode ($tot)
+        
         ]); 
     }
 }

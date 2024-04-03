@@ -164,3 +164,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
+.tot{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkoutbtn {
+    
+    display: flex;
+    justify-content: end;
+}

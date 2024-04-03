@@ -60,6 +60,42 @@ class CartRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+
+
+    public function totalprice(){
+        $tot = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT SUM(p.prezzo * c.quantita) AS total_price
+        FROM prodotti p
+        JOIN cart c ON p.id = c.idProdotto;
+        ';
+        $stmt = $tot->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+
+
+
+
+    public function inserToCart($idProdotto, $quantita) {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        insert into cart (idProdotto, quantita) values ();
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':idProdotto', $idProdotto);
+        $stmt->bindValue(':quantita', $quantita);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
     // /**
     //  * @return Cart[] Returns an array of Cart objects
     //  */

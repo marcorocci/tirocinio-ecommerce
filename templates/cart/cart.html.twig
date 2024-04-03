@@ -1,9 +1,12 @@
 {% set cartProd = products|length %}
 {% extends "base.html.twig" %}
-{% block javascripts %}
-	<script src = 'scripts/counter.js'></script>
-{% endblock %}
+
+
 {% block body %}
+
+<script>
+		const serverdata = {{tot|raw}}
+	</script>
 	<h1 class="fw-bold">Carrello</h1>
 
 	{% if products|length == 0 %}
@@ -45,13 +48,13 @@
 		<div class="recap px-5">
 			<div class="checkout">
 				<ul class="list-group">
-					<li class="list-group-item">Sub Totale:</li>
-					<li class="list-group-item">Spedizione:</li>
+					<li class="list-group-item tot">Sub Totale: <span id="totalPrice"></span></li>
+					<li class="list-group-item tot">Spedizione: <span id="shipment"></span></li>
 					<li class="list-group-item">Codice Sconto:
 						<input type="text">
 						<button type="button" class="btn btn-success">Applica</button>
 					</li>
-					<li class="list-group-item">Totale: A catena</li>
+					<li class="list-group-item tot">Totale: <span id="total"></span></li>
 					<li class="list-group-item">
                         <a href="{{path('app_checkout')}}">
                             <button type="button" class="btn btn-success">Go To Check Out</button>
@@ -64,5 +67,9 @@
 
 	{% endif %}
 
-
+	
 {% endblock %}
+
+	{% block javascripts %}
+		<script src = 'scripts/counter.js'></script>
+	{% endblock %}
