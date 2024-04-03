@@ -53,6 +53,8 @@ new Morris.Bar({
     barColors: ['#198754'],
     barPercentage: 0.4,
     hoverCallback: function(index, options, content) {
+        const el = document.querySelectorAll('.morris-hover.morris-default-style')
+        if (el[1] != null && !el[1].className.includes('custom-style')) el[1].className += ' custom-style'
         return options.data[index].nome; 
     },
 });

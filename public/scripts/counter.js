@@ -28,3 +28,5 @@ shipment.textContent = `${
 var total_sum = parseFloat(total_Price.textContent.split("€")[0]) + parseFloat(shipment.textContent.split("€")[0]);
 
 document.getElementById("total").textContent = `${total_sum.toFixed(2)}€`;
+
+

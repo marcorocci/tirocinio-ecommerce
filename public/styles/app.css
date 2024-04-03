@@ -171,7 +171,12 @@ input::-webkit-inner-spin-button {
 }
 
 .checkoutbtn {
-    
     display: flex;
     justify-content: end;
+}
+.morris-hover.morris-default-style.custom-style {
+    background-color: lightskyblue;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
 }
