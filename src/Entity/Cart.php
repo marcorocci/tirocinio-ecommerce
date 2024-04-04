@@ -28,6 +28,7 @@ class Cart
     private $quantita;
 
     /**
+     * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Prodotti")
      * @ORM\JoinColumn(name="idProdotto", referencedColumnName="id")
      */

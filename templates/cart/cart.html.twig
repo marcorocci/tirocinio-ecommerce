@@ -33,14 +33,14 @@
 				</div>
                 <div class="qtn">
 					<div class="btn-group" role="group" aria-label="Basic example">
-						<button type="button" class="btn btn-success" id="meno">-</button>
-							<input type="number" class="number-input" id="qtninput" value=1>
-						<button type="button" class="btn btn-success" id="piu">+</button>
+						<button type="button" class="btn btn-success" id="meno" onclick="handleLess(this)">-</button>
+							<input type="number" class="number-input" id="qtninput" value={{product.quantita}}>
+						<button type="button" class="btn btn-success" id="piu" onclick="handleMore(this)">+</button>
 					</div>
 					
 					<div class="acquisto">
 						<h4>{{product.prezzo}}€</h4>
-						<button type="button" class="btn btn-danger" id="removeFromCart">Rimuovi dal carrello</button>
+						<button type="button" class="btn btn-danger" id="removeFromCart" onclick="handleRemove(this)">Rimuovi dal carrello</button>
 					</div>
 				</div>
 			</li>

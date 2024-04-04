@@ -51,7 +51,7 @@ class CartRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            select cart.id, nome, descrizione, prezzo, imagePath from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
+            select cart.id, nome, descrizione, prezzo, imagePath, quantita from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
             ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -86,7 +86,10 @@ class CartRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        insert into cart (quantita, idProdotto) values (1, :idProdotto);
+            INSERT INTO cart (quantita, idProdotto)
+            VALUES (1, :idProdotto)
+            ON DUPLICATE KEY UPDATE
+            quantita = quantita + 1;
         ';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':idProdotto', $idProdotto);
