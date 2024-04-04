@@ -29,9 +29,12 @@ class VenditeController extends AbstractController
         // }  
         $cartProd = $this->cartRepository->findByName();
         $result = $this->venditeRepository->totAnn();
+        $graph = $this->venditeRepository->getGraphData();
         return $this->render("vendite/vendite.html.twig", [
             "data" =>  json_encode($result),
-            'cartProd' => $cartProd
+            'cartProd' => $cartProd,
+            'graphData' => json_encode($graph)
+
         ]);
     }
 }

@@ -59,6 +59,18 @@ class VenditeRepository extends ServiceEntityRepository
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
     }
+    public function getGraphData() {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            select DATE(dataVendita) as data, SUM(prezzoTotale) as totale_giornaliero
+            from Vendite
+            where MONTH(dataVendita) = MONTH(curdate()) and YEAR(dataVendita) = YEAR(curdate())
+            group by DATE(dataVendita);
+        ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
     // /**
     //  * @return Vendite[] Returns an array of Vendite objects
     //  */

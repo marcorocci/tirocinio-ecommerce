@@ -32,13 +32,13 @@ for (var i = 1; i <= totalDays; i++) {
 }
 
 const a = $('#res-result').data('res');
-console.log(a)
+
 new Morris.Area({
     element: 'chart',
-    data: data,
-    xkey: 'day',
-    ykeys: ['bicchieri', 'astucci', 'penne'],
-    labels: ['Bicchieri', 'Astucci', 'Penne'],
+    data: mensile,
+    xkey: 'data',
+    ykeys: ['totale_giornaliero'],
+    labels: ['Totale_giornaliero'],
     parseTime: false,
     lineColors: ['#198754', '#2A9FD6', '#C19A6B'],
 });
