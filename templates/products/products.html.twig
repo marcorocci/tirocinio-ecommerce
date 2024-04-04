@@ -11,17 +11,17 @@
 	<div class="px-5">
 		<div class="cerca mx-4 px-4">
 			<div class="col">
-				<input id="searchbar" type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
+				<input oninput="handleSearch(this)" type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
 			</div>
 			<div class="dropdown mx-2">
 				<button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Categoria
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<span class="dropdown-item" role="button" id="category">Tutto</span>
+					<span class="dropdown-item" role="button" id="category" onclick="handleCategory(this)">Tutto</span>
 					<li><hr class="dropdown-divider"></li>
 					{% for category in categories %}
-						<span class="dropdown-item" role="button" id="category">{{category.categoria|capitalize}}</span>
+						<span class="dropdown-item" role="button" id="category" onclick="handleCategory(this)">{{category.categoria|capitalize}}</span>
 					{% endfor %}
 					
 				</div>
@@ -31,14 +31,14 @@
 					Prezzo
 				</button>
 				<ul class="dropdown-menu">
-					<li><span class="dropdown-item" role="button" id="sorting">Tutto</span></li>
+					<li><span class="dropdown-item" role="button" id="sorting" onclick="handleSort(this)">Tutto</span></li>
 					<li><hr class="dropdown-divider"></li>
-					<li><span class="dropdown-item" role="button" id="sorting">In ordine crescente</span></li>
-					<li><span class="dropdown-item" role="button" id="sorting">In ordine decrescente</span></li>
+					<li><span class="dropdown-item" role="button" id="sorting" onclick="handleSort(this)">In ordine crescente</span></li>
+					<li><span class="dropdown-item" role="button" id="sorting" onclick="handleSort(this)">In ordine decrescente</span></li>
 					<li><hr class="dropdown-divider"></li>
-					<li><span class="dropdown-item" role="button" id="price">0€ - 50€</span></li>
-					<li><span class="dropdown-item" role="button" id="price">50€ - 100€</span></li>
-					<li><span class="dropdown-item" role="button" id="price">100€ - &#8734;</span></li>
+					<li><span class="dropdown-item" role="button" id="price" onclick="handlePrice(this)" >0€ - 50€</span></li>
+					<li><span class="dropdown-item" role="button" id="price" onclick="handlePrice(this)">50€ - 100€</span></li>
+					<li><span class="dropdown-item" role="button" id="price" onclick="handlePrice(this)">100€ - &#8734;</span></li>
 				</ul>
 			</div>
 		</div>
