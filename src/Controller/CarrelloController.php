@@ -45,9 +45,9 @@ class CarrelloController extends AbstractController
         }
 
         else {
-            return $this ->json(['message' => "Operazione non riuscita"]);
+            return $this->json(['message' => "Operazione non riuscita"]);
         }
-        return $this ->json(['message' => "Operazionw riuscita"]);
+        return $this->cart();
     }
 }
 

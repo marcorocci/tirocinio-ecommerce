@@ -20,42 +20,44 @@
 
 		<div class="products px-5">
 			{% for product in products %}
-			<li class="list-group-item custom">
-				<div class="name">
-					<span style="display: none;">{{product.id}}</span>
-					<h3>{{product.nome}}</h3>
-					<div style="width: 90px">
-						<img src="{{product.imagePath}}" alt="" width="90px">
+				<li class="list-group-item custom">
+					<div class="name">
+						<h3>{{product.nome}}</h3>
+						<div style="width: 90px">
+							<img src="{{product.imagePath}}" alt="" width="90px">
+						</div>
 					</div>
-				</div>
-				<div class="txt">
-					<p>{{product.descrizione}}</p>
-				</div>
-                <div class="qtn">
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<button type="button" class="btn btn-success" id="meno" onclick="handleLess(this)">-</button>
-							<input type="number" class="number-input" id="qtninput" value={{product.quantita}}>
-						<button type="button" class="btn btn-success" id="piu" onclick="handleMore(this)">+</button>
+					<div class="txt">
+						<p>{{product.descrizione}}</p>
 					</div>
-					
-					<div class="acquisto">
-						<h4>{{product.prezzo}}€</h4>
-						<button type="button" class="btn btn-danger" id="removeFromCart" onclick="handleRemove(this)">Rimuovi dal carrello</button>
+					<div class="qtn">
+						<div class="btn-group" role="group" aria-label="Basic example">
+							<button type="button" class="btn btn-success" onclick="handleLess(this)">-</button>
+							<input type="number" class="number-input" id="qtninput" value={{product.quantita}} readonly>
+							<button type="button" class="btn btn-success" onclick="handleMore(this)">+</button>
+						</div>
+						
+						<div class="acquisto">
+							<h4>{{product.prezzo}}€</h4>
+							<form action="/cart" method="POST">
+								<input type="hidden" style="display: none;" name="idCarrello" value={{product.id}}>
+								<button type="submit" class="btn btn-danger">Rimuovi dal carrello</button>
+							</form>
+						</div>
 					</div>
-				</div>
-			</li>
+				</li>
 			{% endfor %}
 		</div>
 		<div class="recap px-5">
 			<div class="checkout">
 				<ul class="list-group">
-					<li class="list-group-item tot">Sub Totale: <span id="totalPrice"></span></li>
-					<li class="list-group-item tot">Spedizione: <span id="shipment"></span></li>
+					<li class="list-group-item tot">Sub Totale: <div><span id="totalPrice"></span><span>€</span></div></li>
+					<li class="list-group-item tot">Spedizione: <div><span id="shipment"></span><span>€</span></div></li>
 					<li class="list-group-item">Codice Sconto:
 						<input type="text">
 						<button type="button" class="btn btn-success">Applica</button>
 					</li>
-					<li class="list-group-item tot">Totale: <span id="total"></span></li>
+					<li class="list-group-item tot">Totale: <div><span id="total"></span><span>€</span></div></li>
 					<li class="list-group-item checkoutbtn">
                         <a href="{{path('app_checkout')}}">
                             <button type="button" class="btn btn-success">Go To Check Out</button>
@@ -73,5 +75,4 @@
 
 	{% block javascripts %}
 		<script src = 'scripts/counter.js'></script>
-		<script src = 'scripts/removeFromCart.js'></script>
 	{% endblock %}

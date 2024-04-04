@@ -1,50 +1,38 @@
-document.querySelector("#piu").addEventListener("click", function() {
-    let numero = parseInt(document.querySelector("#qtninput").value);
-    numero++;
-    document.querySelector("#qtninput").value = numero;
-    document.querySelector("#qtninput").dispatchEvent(new Event("input"));
-});
-
-document.querySelector("#meno").addEventListener("click", function() {
-    let numero = parseInt(document.querySelector("#qtninput").value);
-    if (numero <= 1) return;
-    numero--;
-    document.querySelector("#qtninput").value = numero;
-    document.querySelector("#qtninput").dispatchEvent(new Event("input"));
-});
-
-
-document.querySelectorAll("#qtninput").forEach(e => {
-    e.addEventListener("input", ({target}) => {
-        const total_Price = document.getElementById("totalPrice")
-        const shipment = document.getElementById("shipment")
-        const n = target.value
-
-        
-        //Mostra il prezzo totale nella pagina
-        total_Price.textContent = `${(serverdata[0].total_price * n).toFixed(2)}€`;
-        shipment.textContent = `${
-            (Math.random() * 50).toFixed(2)
-        }€`;
-        var total_sum = parseFloat(total_Price.textContent.split("€")[0]) + parseFloat(shipment.textContent.split("€")[0]);
-        
-        document.getElementById("total").textContent = `${total_sum.toFixed(2)}€`;
-    })
+const handleMore = (target) => {
+    const inputTag = target.parentNode.children[1]
+    const [moneyToAdd] = target.parentNode.parentNode.children[1].children[0].textContent.split('€')
+    let numero = parseInt(inputTag.value)
+    numero++
+    inputTag.value = numero
+    const totPrice = document.getElementById("totalPrice")
+    totPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(moneyToAdd)).toFixed(2)
+    finalPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(shipment.textContent)).toFixed(2)
+}
+const handleLess = (target) => {
+    const inputTag = target.parentNode.children[1]
+    const [moneyToSubtract] = target.parentNode.parentNode.children[1].children[0].textContent.split('€')
+    let numero = parseInt(inputTag.value)
+    if (numero <= 1) return
+    numero--
+    inputTag.value = numero
+    const totPrice = document.getElementById("totalPrice")
+    totPrice.textContent = (parseFloat(totPrice.textContent) - parseFloat(moneyToSubtract)).toFixed(2)
+    finalPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(shipment.textContent)).toFixed(2)
+}
 
 
-    const total_Price = document.getElementById("totalPrice")
-    const shipment = document.getElementById("shipment")
+const totalPrice = document.getElementById("totalPrice")
+const shipment = document.getElementById("shipment")
+const finalPrice = document.getElementById("total")
 
-    
-    //Mostra il prezzo totale nella pagina
-    total_Price.textContent = `${serverdata[0].total_price}€`;
-    shipment.textContent = `${
-        (Math.random() * 50).toFixed(2)
-    }€`;
-    var total_sum = parseFloat(total_Price.textContent.split("€")[0]) + parseFloat(shipment.textContent.split("€")[0]);
-    
-    document.getElementById("total").textContent = `${total_sum.toFixed(2)}€`;
-})
+shipment.textContent = (Math.random() * 50).toFixed(2)
+totalPrice.textContent = parseFloat(serverdata[0].total_price)
+finalPrice.textContent = (parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent)).toFixed(2)
+
+
+
+
+
 
    
 
