@@ -1,4 +1,4 @@
-{% set cartProd = cartProd|length %}
+{% set cartProd = 3 %}
 {% extends "base.html.twig" %}
 {% block body %}
 	<div class="container" style="max-width: 960px;">
@@ -64,7 +64,7 @@
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">Nome</label>
-								<input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+								<input type="text" class="form-control" id="firstName" placeholder="" value="{{result.id}}" required="">
 								<div class="invalid-feedback">
 									Inserire nome valido.</div>
 							</div>
