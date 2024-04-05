@@ -46,6 +46,16 @@ class ProdottiRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function findCategories() {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            select distinct(categoria)
+            from prodotti
+        ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
 
     // /**
     //  * @return Prodotti[] Returns an array of Prodotti objects

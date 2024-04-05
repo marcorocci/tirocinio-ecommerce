@@ -32,23 +32,29 @@ for (var i = 1; i <= totalDays; i++) {
 }
 
 const a = $('#res-result').data('res');
-console.log(a)
+
 new Morris.Area({
     element: 'chart',
-    data: data,
-    xkey: 'day',
-    ykeys: ['bicchieri', 'astucci', 'penne'],
-    labels: ['Bicchieri', 'Astucci', 'Penne'],
+    data: mensile,
+    xkey: 'data',
+    ykeys: ['totale_giornaliero'],
+    labels: ['Totale_giornaliero'],
     parseTime: false,
     lineColors: ['#198754', '#2A9FD6', '#C19A6B'],
 });
 
-new Morris.Bar ({
+
+new Morris.Bar({
     element: 'barchart',
     data: dataAndamento,
-    xkey: 'year',
-    ykeys: ['sales'],
-    labels: ['vendite annuali'],
-    barColors : ['#198754'],
-    barPercentage: 1
+    xkey: 'anno',
+    ykeys: ['prodotti_venduti'],
+    labels: ['Prodotti Venduti'],
+    barColors: ['#198754'],
+    barPercentage: 0.4,
+    hoverCallback: function(index, options, content) {
+        const el = document.querySelectorAll('.morris-hover.morris-default-style')
+        if (el[1] != null && !el[1].className.includes('custom-style')) el[1].className += ' custom-style'
+        return options.data[index].nome; 
+    },
 });

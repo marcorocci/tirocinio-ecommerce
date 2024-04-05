@@ -51,7 +51,7 @@ class CartRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            select nome, descrizione, prezzo, imagePath from prodotti inner join cart on cart.idProdotto = prodotti.id;
+            select cart.id, nome, descrizione, prezzo, imagePath, quantita from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
             ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -59,6 +59,64 @@ class CartRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
+
+
+
+    public function totalprice(){
+        $tot = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT SUM(p.prezzo * c.quantita) AS total_price
+        FROM prodotti p
+        JOIN cart c ON p.id = c.idProdotto;
+        ';
+        $stmt = $tot->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+
+
+
+
+    public function inserToCart($idProdotto) {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            INSERT INTO cart (quantita, idProdotto)
+            VALUES (1, :idProdotto)
+            ON DUPLICATE KEY UPDATE
+            quantita = quantita + 1;
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':idProdotto', $idProdotto);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function removeFromCart($idCarrello) {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        DELETE FROM cart WHERE id = :idCarrello
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':idCarrello', $idCarrello);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
+    
+
+
+
 
     // /**
     //  * @return Cart[] Returns an array of Cart objects

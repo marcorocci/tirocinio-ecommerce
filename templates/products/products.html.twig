@@ -1,10 +1,8 @@
 {% set cartProd = cartProd|length %}
 {% extends "base.html.twig" %}
 {% block javascripts %}
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="scripts/searchFeature.js"></script>
+	<script src="scripts/addToCart.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -13,16 +11,19 @@
 	<div class="px-5">
 		<div class="cerca mx-4 px-4">
 			<div class="col">
-				<input id="searchbar" type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
+				<input oninput="handleSearch(this)" type="text" class="form-control" placeholder="Cerca Prodotto" aria-label="First name">
 			</div>
 			<div class="dropdown mx-2">
 				<button class="btn btn-secondary dropdown-toggle bg-success border border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Categoria
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
+					<span class="dropdown-item" role="button" onclick="handleCategory(this)">Tutto</span>
+					<li><hr class="dropdown-divider"></li>
+					{% for category in categories %}
+						<span class="dropdown-item" role="button" onclick="handleCategory(this)">{{category.categoria|capitalize}}</span>
+					{% endfor %}
+					
 				</div>
 			</div>
 			<div class="dropdown">
@@ -30,15 +31,14 @@
 					Prezzo
 				</button>
 				<ul class="dropdown-menu">
-					<li>
-						<a class="dropdown-item" href="#">0€ - 50€</a>
-					</li>
-					<li>
-						<a class="dropdown-item" href="#">50€ - 100€</a>
-					</li>
-					<li>
-						<a class="dropdown-item" href="#">100€ - 200€</a>
-					</li>
+					<li><span class="dropdown-item" role="button" onclick="handleSort(this)">Tutto</span></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><span class="dropdown-item" role="button" onclick="handleSort(this)">In ordine crescente</span></li>
+					<li><span class="dropdown-item" role="button" onclick="handleSort(this)">In ordine decrescente</span></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><span class="dropdown-item" role="button" onclick="handlePrice(this)" >0€ - 50€</span></li>
+					<li><span class="dropdown-item" role="button" onclick="handlePrice(this)">50€ - 100€</span></li>
+					<li><span class="dropdown-item" role="button" onclick="handlePrice(this)">100€ - &#8734;</span></li>
 				</ul>
 			</div>
 		</div>
@@ -47,13 +47,15 @@
 			<ul class="list-group">
 				{% for product in products %}
 					{% include '/components/prodotto.html.twig' with {
+										id: product.id,
 				                        img: product.imagePath, 
 				                        nome: product.nome, 
 				                        prezzo: product.prezzo,
-										descrizione: product.descrizione
+										descrizione: product.descrizione,
+										categoria: product.categoria
 				                    } %}
 				{% endfor %}
 			</ul>
 		</div>
 	</div>
-{% endblock %}
+{% endblock %} 

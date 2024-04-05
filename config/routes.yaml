@@ -13,9 +13,15 @@ app_vendite:
     path: /vendite
     controller: App\Controller\VenditeController::vendite
 
+app_cart_post:
+    path: /cart
+    controller: App\Controller\CarrelloController::handlePost
+    methods : [POST]
+
 app_cart:
     path: /cart
     controller: App\Controller\CarrelloController::cart
+    methods : [GET]
 
 app_checkout:
     path: /checkout

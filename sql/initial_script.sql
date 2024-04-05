@@ -93,6 +93,12 @@ from Vendite
 inner join prodotti on prodotti.id = Vendite.idProdotto
 group by year(dataVendita);
 
+ALTER TABLE cart ADD CONSTRAINT idProdotto UNIQUE (idProdotto);
+
+INSERT INTO cart (quantita, idProdotto)
+VALUES (1, 1)
+ON DUPLICATE KEY UPDATE
+quantita = quantita + 1;
 
 
 

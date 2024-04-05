@@ -1,188 +1,212 @@
 {% set cartProd = cartProd|length %}
 {% extends "base.html.twig" %}
 {% block body %}
-<div class="container" style="max-width: 960px;">
-    <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="<i class="bi bi-bag"></i>" alt="" width="72" height="72">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <h2>Checkout</h2>
-        <br>
-      
-    <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Il tuo carrello</span>
-                {#<span class="badge badge-secondary badge-pill">3</span>#}
-            </h4>
-            <ul class="list-group mb-3 sticky-top">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Astuccio</h6>
-                        <small class="text-muted">Breve descrizione</small>
-                    </div>
-                    <span class="text-muted">€12</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Penna Bic</h6>
-                        <small class="text-muted">Breve descrizione</small>
-                    </div>
-                    <span class="text-muted">€8</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Righello</h6>
-                        <small class="text-muted">Breve descrizione</small>
-                    </div>
-                    <span class="text-muted">€5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Codice promozionale</h6>
-                        <small>EXAMPLECODE</small>
-                    </div>
-                    <span class="text-success">-€5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Totale (EU)</span>
-                    <strong>€20</strong>
-                </li>
-            </ul>
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Codice promozionale">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Riscatta</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Indirizzo di fatturazione</h4>
-            <form class="needs-validation" novalidate="">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">Nome</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="{{result.nome}}" required="">
-                        <div class="invalid-feedback"> Inserire nome valido.</div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Cognome</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                        <div class="invalid-feedback"> Inserire cognome valido. </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="username">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                        </div>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                        <div class="invalid-feedback" style="width: 100%;"> Inserire username valido. </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Opzionale)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback"> Inserisci un'email valida per rimanere aggiornato sulla tua spedizione.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="address">Indirizzo</label>
-                    <input type="text" class="form-control" id="address" placeholder="Via del Corso 123" required="">
-                    <div class="invalid-feedback"> Please enter your shipping address. </div>
-                </div>
-                <div class="mb-3">
-                    <label for="address2">Indirizzo 2 <span class="text-muted">(Opzionale)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Appartamento o interno piano">
-                </div>
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="country">Regione</label>
-                        <select class="custom-select d-block w-100" id="regione" required="">
-                            <option value="">Scegli...</option>
-                            <option></option>
-                        </select>
-                        <div class="invalid-feedback"> Seleziona una regione valida. </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="state">Stato</label>
-                        <select class="custom-select d-block w-100" id="stato" required="">
-                            <option value="">Scegli...</option>
-                            <option>Italia</option>
-                        </select>
-                        <div class="invalid-feedback"> Seleziona uno stato valido. </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">Codice Postale</label>
-                        <input type="text" class="form-control" id="CodicePostale" placeholder="" required="">
-                        <div class="invalid-feedback"> Inserire codice postale valido. </div>
-                    </div>
-                </div>
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label class="custom-control-label" for="same-address">L'indirizzo di spedizione è uguale all'indirizzo di spedizione.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Salva queste informazioni per la prossima volta.</label>
-                </div>
-                <hr class="mb-4">
-                <h4 class="mb-3">Pagamento</h4>
-                <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                        <label class="custom-control-label" for="credit">Carta di credito</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="debit">Carta di debito</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                        <label class="custom-control-label" for="paypal">PayPal</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="cc-name">Nome sulla carta</label>
-                        <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                        <small class="text-muted">Nome intero che compare sulla carta</small>
-                        <div class="invalid-feedback"> Inserire nome presente sulla carta.</div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="cc-number">Numero della carta di credito</label>
-                        <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                        <div class="invalid-feedback"> Inserire numero della carta di credito.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <label for="cc-expiration">Scadenza</label>
-                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                        <div class="invalid-feedback"> Inserire data di scadenza. </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="cc-cvv">CVV</label>
-                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                        <div class="invalid-feedback"> Inserire numero di sicurezza.</div>
-                    </div>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continua con il checkout</button>
-            </form>
-        </div>
-</div>
+	<div class="container" style="max-width: 960px;">
+		<div class="py-5 text-center">
+            <i class="bi bi-bag d-block mx-auto mb-4"></i>
+			{# <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="72"> #}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+			<h2>Checkout</h2>
+			<br>
 
-</div>
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2024-2025 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
+			<div class="row">
+				<div class="col-md-4 order-md-2 mb-4">
+					<h4 class="d-flex justify-content-between align-items-center mb-3">
+						<span class="text-muted">Il tuo carrello</span>
+						{#<span class="badge badge-secondary badge-pill">3</span>#}
+					</h4>
+					<ul class="list-group mb-3 sticky-top">
+						<li class="list-group-item d-flex justify-content-between lh-condensed">
+							<div>
+								<h6 class="my-0">Astuccio</h6>
+								<small class="text-muted">Breve descrizione</small>
+							</div>
+							<span class="text-muted">€12</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between lh-condensed">
+							<div>
+								<h6 class="my-0">Penna Bic</h6>
+								<small class="text-muted">Breve descrizione</small>
+							</div>
+							<span class="text-muted">€8</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between lh-condensed">
+							<div>
+								<h6 class="my-0">Righello</h6>
+								<small class="text-muted">Breve descrizione</small>
+							</div>
+							<span class="text-muted">€5</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between bg-light">
+							<div class="text-success">
+								<h6 class="my-0">Codice promozionale</h6>
+								<small>EXAMPLECODE</small>
+							</div>
+							<span class="text-success">-€5</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between">
+							<span>Totale (EU)</span>
+							<strong>€20</strong>
+						</li>
+					</ul>
+					<form class="card p-2">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Codice promozionale">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-secondary">Riscatta</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-8 order-md-1">
+					<h4 class="mb-3">Indirizzo di fatturazione</h4>
+					<form class="needs-validation" novalidate="">
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="firstName">Nome</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+								<div class="invalid-feedback">
+									Inserire nome valido.</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="lastName">Cognome</label>
+								<input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+								<div class="invalid-feedback">
+									Inserire cognome valido.
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="username">Username</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">@</span>
+								</div>
+								<input type="text" class="form-control" id="username" placeholder="Username" required="">
+								<div class="invalid-feedback" style="width: 100%;">
+									Inserire username valido.
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="email">Email
+								<span class="text-muted">(Opzionale)</span>
+							</label>
+							<input type="email" class="form-control" id="email" placeholder="you@example.com">
+							<div class="invalid-feedback">
+								Inserisci un'email valida per rimanere aggiornato sulla tua spedizione.</div>
+						</div>
+						<div class="mb-3">
+							<label for="address">Indirizzo</label>
+							<input type="text" class="form-control" id="address" placeholder="Via del Corso 123" required="">
+							<div class="invalid-feedback">
+								Please enter your shipping address.
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="address2">Indirizzo 2
+								<span class="text-muted">(Opzionale)</span>
+							</label>
+							<input type="text" class="form-control" id="address2" placeholder="Appartamento o interno piano">
+						</div>
+						<div class="row">
+							<div class="col-md-5 mb-3">
+								<label for="country">Regione</label>
+								<select class="custom-select d-block w-100" id="regione" required="">
+									<option value="">Scegli...</option>
+									<option></option>
+								</select>
+								<div class="invalid-feedback">
+									Seleziona una regione valida.
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="state">Stato</label>
+								<select class="custom-select d-block w-100" id="stato" required="">
+									<option value="">Scegli...</option>
+									<option>Italia</option>
+								</select>
+								<div class="invalid-feedback">
+									Seleziona uno stato valido.
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label for="zip">Codice Postale</label>
+								<input type="text" class="form-control" id="CodicePostale" placeholder="" required="">
+								<div class="invalid-feedback">
+									Inserire codice postale valido.
+								</div>
+							</div>
+						</div>
+						<hr class="mb-4">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="same-address">
+							<label class="custom-control-label" for="same-address">L'indirizzo di spedizione è uguale all'indirizzo di spedizione.</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="save-info">
+							<label class="custom-control-label" for="save-info">Salva queste informazioni per la prossima volta.</label>
+						</div>
+						<hr class="mb-4">
+						<h4 class="mb-3">Pagamento</h4>
+						<div class="d-block my-3">
+							<div class="custom-control custom-radio">
+								<input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+								<label class="custom-control-label" for="credit">Carta di credito</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+								<label class="custom-control-label" for="debit">Carta di debito</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+								<label class="custom-control-label" for="paypal">PayPal</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="cc-name">Nome sulla carta</label>
+								<input type="text" class="form-control" id="cc-name" placeholder="" required="">
+								<small class="text-muted">Nome intero che compare sulla carta</small>
+								<div class="invalid-feedback">
+									Inserire nome presente sulla carta.</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="cc-number">Numero della carta di credito</label>
+								<input type="text" class="form-control" id="cc-number" placeholder="" required="">
+								<div class="invalid-feedback">
+									Inserire numero della carta di credito.</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 mb-3">
+								<label for="cc-expiration">Scadenza</label>
+								<input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+								<div class="invalid-feedback">
+									Inserire data di scadenza.
+								</div>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label for="cc-cvv">CVV</label>
+								<input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+								<div class="invalid-feedback">
+									Inserire numero di sicurezza.</div>
+							</div>
+						</div>
+						<hr class="mb-4">
+						<button class="btn btn-primary btn-lg btn-block" type="submit">Continua con il checkout</button>
+					</form>
+				</div>
+			</div>
 
+		</div>
+		<footer class="my-5 pt-5 text-muted text-center text-small">
+				        <p class="mb-1">© 2024-2025 Company Name</p>
+				        <ul class="list-inline">
+				            <li class="list-inline-item"><a href="#">Privacy</a></li>
+				            <li class="list-inline-item"><a href="#">Terms</a></li>
+				            <li class="list-inline-item"><a href="#">Support</a></li>
+				        </ul>
+				    </footer>
+	</div>
 {% endblock %}

@@ -23,10 +23,11 @@ class HomeController extends AbstractController
     public function prodotti() {
         $products = $this->prodottiRepository->findAll();
         $result = $this->cartRepository->findByName();
+        $categorie = $this->prodottiRepository->findCategories();
         return $this->render("products/products.html.twig", [
             'products' => $products,
             'cartProd' => $result,
-            'ciao' => 'ciao'
+            'categories' => $categorie
         ]);
     }
 }
