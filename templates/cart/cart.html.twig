@@ -53,9 +53,12 @@
 				<ul class="list-group">
 					<li class="list-group-item tot">Sub Totale: <div><span id="totalPrice"></span><span>€</span></div></li>
 					<li class="list-group-item tot">Spedizione: <div><span id="shipment"></span><span>€</span></div></li>
-					<li class="list-group-item">Codice Sconto:
-						<input type="text">
-						<button type="button" class="btn btn-success">Applica</button>
+					<li class="list-group-item">
+					<div class="input-group gr">Codice Sconto:
+						<form method="POST" onsubmit="handlePromoCode(event)">
+							<input class="form-control" type="text" name="promoCode">
+							<button type="submit" class="btn btn-success" >Applica</button>
+						</form>
 					</li>
 					<li class="list-group-item tot">Totale: <div><span id="total"></span><span>€</span></div></li>
 					<li class="list-group-item checkoutbtn">

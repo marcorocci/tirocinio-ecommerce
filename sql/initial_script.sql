@@ -25,6 +25,14 @@ create table Vendite(
     foreign key (idProdotto) references prodotti(id)
 );
 
+create table Promozioni(
+	id int auto_increment primary key,
+    codicePromozionale varchar(255) not null unique,
+    sconto decimal(5, 2) not null,
+    dataInizio datetime,
+    dataFine datetime
+);
+
 -- INSERTS
 
 insert into prodotti(nome, descrizione, prezzo, imagePath, categoria) 
@@ -38,11 +46,9 @@ values(1, 5),
 (2, 6),
 (3, 4);
 
-
 insert into Vendite(idProdotto, quantita, prezzoTotale) values (1, 1, 22.30), (2, 1, 55.90), (1, 2, 44.60), (3, 1, 999.01);
 
-
-
-
+INSERT INTO Promozioni (codicePromozionale, sconto, dataInizio, dataFine)
+VALUES ('CODICE123', 10.00, '2024-04-08 00:00:00', '2024-12-31 23:59:59');
 
 

@@ -29,6 +29,50 @@ shipment.textContent = (Math.random() * 50).toFixed(2)
 totalPrice.textContent = parseFloat(serverdata[0].total_price)
 finalPrice.textContent = (parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent)).toFixed(2)
 
+const handlePromoCode = async (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+
+    const response = await fetch('/promo', {
+        method: 'POST',
+        body: formData,
+    })
+
+    if (response.ok) {
+        const data = await response.json()
+        const inputElement = document.getElementsByName('promoCode')[0]
+        const isEmptyData = Object.keys(data).length === 0
+
+        if (!isEmptyData) {
+            const currentDate = new Date()
+            const startDate = new Date(data[0].dataInizio)
+            const endDate = new Date(data[0].dataFine)
+
+            if (currentDate >= startDate && currentDate <= endDate) {
+                inputElement.classList.add('is-valid')
+                inputElement.classList.remove('is-invalid')
+                sessionStorage.setItem('promoCode', formData.get('promoCode'))
+            } else {
+                inputElement.classList.add('is-invalid')
+                inputElement.classList.remove('is-valid')
+                sessionStorage.removeItem('promoCode')
+                formData.append('remove', 1)
+                const promoCodeRemovalResponse = await fetch('/promo', {
+                    method: 'POST',
+                    body: formData,
+                })
+            }
+        } else {
+            if (sessionStorage.getItem('promoCode'))
+                sessionStorage.removeItem('promoCode')
+            inputElement.classList.add('is-invalid')
+            inputElement.classList.remove('is-valid')
+        }
+    } else {
+        console.error('Error:', response.status, response.statusText)
+    }
+}
+
 
 
 

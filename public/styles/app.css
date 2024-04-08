@@ -184,3 +184,15 @@ input::-webkit-inner-spin-button {
 .morris-hover-point {
     color: #1D1D35 !important;
 }
+
+.gr {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+.gr > form {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
