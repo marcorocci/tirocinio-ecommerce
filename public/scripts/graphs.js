@@ -23,25 +23,29 @@ const mesi = (mese) => {
     }
 }
 
-var totalDays = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
-document.getElementById('mese').innerHTML = `Questi sono i 3 prodotti piu venduti a <strong>${mesi(new Date().getMonth()+1)}</strong>`
-
-var data = [];
-for (var i = 1; i <= totalDays; i++) {
-    data.push({ day: i.toString(), bicchieri: Math.floor(Math.random() * 50), astucci: Math.floor(Math.random() * 50), penne: Math.floor(Math.random() * 50)}); 
+const totalDays = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+document.getElementById('mese').innerHTML = `Totale degli acquisti per ogni giorno di <strong>${mesi(new Date().getMonth()+1)}</strong>`
+document.getElementById('ann').innerHTML = `Totale vendite negli anni di attività`
+const dateSet = mensile.map(item => item.data)
+for (let i = 1; i <= totalDays; i++) {
+    
+    if (!dateSet.includes(i)) {
+        mensile.push({data: i, totale_giornaliero: '0.00'})
+    }
 }
 
-const a = $('#res-result').data('res');
+mensile.sort((a, b) => new Date(a.data) - new Date(b.data))
+
 
 new Morris.Area({
     element: 'chart',
     data: mensile,
     xkey: 'data',
     ykeys: ['totale_giornaliero'],
-    labels: ['Totale_giornaliero'],
+    labels: ['Totale giornaliero'],
     parseTime: false,
-    lineColors: ['#198754', '#2A9FD6', '#C19A6B'],
-});
+    lineColors: ['#198754', '#2A9FD6', '#C19A6B']
+})
 
 
 new Morris.Bar({
@@ -51,10 +55,5 @@ new Morris.Bar({
     ykeys: ['prodotti_venduti'],
     labels: ['Prodotti Venduti'],
     barColors: ['#198754'],
-    barPercentage: 0.4,
-    hoverCallback: function(index, options, content) {
-        const el = document.querySelectorAll('.morris-hover.morris-default-style')
-        if (el[1] != null && !el[1].className.includes('custom-style')) el[1].className += ' custom-style'
-        return options.data[index].nome; 
-    },
-});
+    barPercentage: 0.4
+})

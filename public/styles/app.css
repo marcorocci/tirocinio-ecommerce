@@ -174,9 +174,13 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: end;
 }
-.morris-hover.morris-default-style.custom-style {
-    background-color: lightskyblue;
-    color: black;
+.morris-hover.morris-default-style {
     font-size: 1em;
+    background-image: radial-gradient(circle, #00c6fc, #00b6e7, #00a6d3, #0096bf, #0087ab);
+    border: none;
+    color: #1D1D35;
     font-weight: bold;
+}
+.morris-hover-point {
+    color: #1D1D35 !important;
 }
