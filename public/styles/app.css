@@ -196,3 +196,26 @@ input::-webkit-inner-spin-button {
     justify-content: space-evenly;
     gap: 1rem;
 }
+
+.noprod {
+    display: flex;
+    justify-content: center;
+    background-image: url("../imgs/minimalist-background-gradient-design-style_483537-2985.jpg");
+    background-size: cover;
+}
+.cart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid #000; */
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+   
+.cart a {
+    text-decoration: none;
+    color: #fff;
+}

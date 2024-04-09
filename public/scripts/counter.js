@@ -52,7 +52,6 @@ const handlePromoCode = async (event) => {
                 inputElement.classList.add('is-valid')
                 inputElement.classList.remove('is-invalid')
                 sessionStorage.setItem('promoCode', formData.get('promoCode'))
-
                 finalPrice.textContent = (parseFloat(finalPrice.textContent) - (parseFloat(finalPrice.textContent) / 10)).toFixed(2)
             } else {
                 inputElement.classList.add('is-invalid')
