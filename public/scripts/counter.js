@@ -24,10 +24,15 @@ const handleLess = (target) => {
 const totalPrice = document.getElementById("totalPrice")
 const shipment = document.getElementById("shipment")
 const finalPrice = document.getElementById("total")
+const ivatot = document.getElementById("ivatot")
 
 shipment.textContent = (Math.random() * 50).toFixed(2)
 totalPrice.textContent = parseFloat(serverdata[0].total_price)
 finalPrice.textContent = (parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent)).toFixed(2)
+ivatot.textContent = (((parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent))*22)/100).toFixed(2)
+
+
+
 
 const handlePromoCode = async (event) => {
     event.preventDefault()

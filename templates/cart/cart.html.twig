@@ -68,7 +68,13 @@
 							<button type="submit" class="btn btn-success" >Applica</button>
 						</form>
 					</li>
-					<li class="list-group-item tot">Totale: <div><span id="total"></span><span>€</span></div></li>
+					<li class="list-group-item tot">Totale: <br>di cui IVA(22%):
+						<div>
+							<span id="total"></span><span>€</span>
+							<br><span id="ivatot"></span><span>€</span>
+						</div>
+						
+					</li>
 					<li class="list-group-item checkoutbtn">
                         <a href="{{path('app_checkout')}}">
                             <button type="button" class="btn btn-success">Go To Check Out</button>
