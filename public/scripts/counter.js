@@ -7,6 +7,7 @@ const handleMore = (target) => {
     const totPrice = document.getElementById("totalPrice")
     totPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(moneyToAdd)).toFixed(2)
     finalPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(shipment.textContent)).toFixed(2)
+    ivatot.textContent = ((parseFloat(totalPrice.textContent)*22)/100).toFixed(2)
 }
 const handleLess = (target) => {
     const inputTag = target.parentNode.children[1]
@@ -18,6 +19,7 @@ const handleLess = (target) => {
     const totPrice = document.getElementById("totalPrice")
     totPrice.textContent = (parseFloat(totPrice.textContent) - parseFloat(moneyToSubtract)).toFixed(2)
     finalPrice.textContent = (parseFloat(totPrice.textContent) + parseFloat(shipment.textContent)).toFixed(2)
+    ivatot.textContent = ((parseFloat(totalPrice.textContent)*22)/100).toFixed(2)
 }
 
 
@@ -29,7 +31,7 @@ const ivatot = document.getElementById("ivatot")
 shipment.textContent = (Math.random() * 50).toFixed(2)
 totalPrice.textContent = parseFloat(serverdata[0].total_price)
 finalPrice.textContent = (parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent)).toFixed(2)
-ivatot.textContent = (((parseFloat(serverdata[0].total_price) + parseFloat(shipment.textContent))*22)/100).toFixed(2)
+ivatot.textContent = ((parseFloat(totalPrice.textContent)*22)/100).toFixed(2)
 
 
 
