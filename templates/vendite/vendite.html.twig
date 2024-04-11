@@ -3,13 +3,12 @@
 {% block body %}
 <script>
 	const dataAndamento = {{data|raw}}
-	console.log(dataAndamento)
 	const mensile = {{graphData|raw}}
 </script>
 	<h1 class="m-5" id="mese"></h1>
-	<div id="chart" style="" class="m-5"></div>
-	<h1>Vendite Annuali</h1>
-	<div id="barchart" style="height:300px;" style= class="m-5"></div>
+	<div id="chart" class="m-5"></div>
+	<h1 id="ann" class="my-5"></h1>
+	<div id="barchart" style="height:300px;" class="m-5"></div>
 {% endblock %}
 {% block javascripts %}
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>

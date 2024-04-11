@@ -62,10 +62,10 @@ class VenditeRepository extends ServiceEntityRepository
     public function getGraphData() {
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
-            select DATE(dataVendita) as data, SUM(prezzoTotale) as totale_giornaliero
+            select DAY(dataVendita) as data, SUM(prezzoTotale) as totale_giornaliero
             from Vendite
             where MONTH(dataVendita) = MONTH(curdate()) and YEAR(dataVendita) = YEAR(curdate())
-            group by DATE(dataVendita);
+            group by day(dataVendita);
         ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();

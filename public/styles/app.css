@@ -174,9 +174,48 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: end;
 }
-.morris-hover.morris-default-style.custom-style {
-    background-color: lightskyblue;
-    color: black;
+.morris-hover.morris-default-style {
     font-size: 1em;
+    background-image: radial-gradient(circle, #00c6fc, #00b6e7, #00a6d3, #0096bf, #0087ab);
+    border: none;
+    color: #1D1D35;
     font-weight: bold;
+}
+.morris-hover-point {
+    color: #1D1D35 !important;
+}
+
+.gr {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+.gr > form {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.noprod {
+    display: flex;
+    justify-content: center;
+    background-image: url("../imgs/minimalist-background-gradient-design-style_483537-2985.jpg");
+    background-size: cover;
+}
+.cart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid #000; */
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+   
+.cart a {
+    text-decoration: none;
+    color: #fff;
 }

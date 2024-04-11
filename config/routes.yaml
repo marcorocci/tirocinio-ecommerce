@@ -30,3 +30,8 @@ app_checkout:
 app_andamento:
     path: /andamento
     controller: App\Controller\AndamentoProdottiController::andamento
+
+app_promozioni:
+    path: /promo
+    controller: App\Controller\PromozioniController::index
+    methods: [POST]

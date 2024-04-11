@@ -1,4 +1,3 @@
-
 create database if not exists ecommerce;
 use ecommerce;
 
@@ -12,11 +11,29 @@ create table prodotti(
 );
 create table cart(
 	id int auto_increment primary key,
-    idProdotto int,
+    idProdotto int unique,
     aggiunto datetime default(current_timestamp()),
     quantita int not null,
     foreign key (idProdotto) references prodotti(id)
 );
+create table Vendite(
+	venditaId int auto_increment primary key,
+    dataVendita datetime default(current_timestamp()),
+    idProdotto int not null,
+    quantita int not null,
+    prezzoTotale decimal(10, 2) not null,
+    foreign key (idProdotto) references prodotti(id)
+);
+
+create table Promozioni(
+	id int auto_increment primary key,
+    codicePromozionale varchar(255) not null unique,
+    sconto decimal(5, 2) not null,
+    dataInizio datetime,
+    dataFine datetime
+);
+
+-- INSERTS
 
 insert into prodotti(nome, descrizione, prezzo, imagePath, categoria) 
 values ("T-shirt", "Stile aderente, maniche lunghe raglan a contrasto.", 22.3, "imgs/tshirt.jpg", "Abbigliamento uomo"),

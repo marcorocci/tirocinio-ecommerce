@@ -10,8 +10,16 @@
 	<h1 class="fw-bold">Carrello</h1>
 
 	{% if products|length == 0 %}
-		<h5>Hai {{products|length}} prodotti nel carrello</h5>
-		<h3>Non ci sono prodotti nel carrello</h3>
+		<div class="noprod">
+			<div class="cart">
+				<h3>Non ci sono prodotti nel carrello</h3>
+				<img src="imgs/empty_cart.png" alt="">
+				<button type="button" class="btn btn-success">
+					<a href="{{path('app_prodotti')}}">Torna allo Shopping</a>
+				</button>
+
+			</div>
+		</div>
 	{% endif %}
 	{% if products|length > 0 %}
 		<div class="nprod px-5">
@@ -53,9 +61,12 @@
 				<ul class="list-group">
 					<li class="list-group-item tot">Sub Totale: <div><span id="totalPrice"></span><span>€</span></div></li>
 					<li class="list-group-item tot">Spedizione: <div><span id="shipment"></span><span>€</span></div></li>
-					<li class="list-group-item">Codice Sconto:
-						<input type="text">
-						<button type="button" class="btn btn-success">Applica</button>
+					<li class="list-group-item">
+					<div class="input-group gr">Codice Sconto:
+						<form method="POST" onsubmit="handlePromoCode(event)">
+							<input class="form-control" type="text" name="promoCode">
+							<button type="submit" class="btn btn-success" >Applica</button>
+						</form>
 					</li>
 					<li class="list-group-item tot">Totale: <div><span id="total"></span><span>€</span></div></li>
 					<li class="list-group-item checkoutbtn">
