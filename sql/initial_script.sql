@@ -52,3 +52,42 @@ INSERT INTO Promozioni (codicePromozionale, sconto, dataInizio, dataFine)
 VALUES ('CODICE123', 10.00, '2024-04-08 00:00:00', '2024-12-31 23:59:59');
 
 
+
+create table utenti(
+id_utenti int auto_increment primary key,
+nome varchar (80),
+cognome varchar (80),
+username varchar (80),
+email varchar (80),
+indirizzo_uno varchar(80),
+indirizzo_due varchar (80),
+regione varchar(80),
+stato varchar(80),
+codice_postale varchar (80)
+);
+
+create table pagamenti(
+id_pagamenti int auto_increment primary key,
+carta_credito varchar (80),
+carta_debito varchar (80),
+paypal varchar (80)
+);
+
+create table checkout(
+  id_utenti int,
+  id_pagamenti int,
+  foreign key (id_utenti) references utenti(id_utenti),
+  foreign key (id_pagamenti) references pagamenti(id_pagamenti)
+);
+
+
+insert into utenti(nome, cognome, username, email, indirizzo_uno, indirizzo_due,regione, stato, codice_postale)
+values("Martina", "Vespa","marti", "mmm@mail.com","Via Roma 13","","Lazio","Italia","00190");
+
+insert into pagamenti (carta_credito, carta_debito)values("","");
+
+insert into checkout(id_utenti,id_pagamenti)values(1, 1);
+
+
+
+
