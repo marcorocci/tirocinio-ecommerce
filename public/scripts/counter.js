@@ -39,7 +39,6 @@ ivatot.textContent = ((parseFloat(totalPrice.textContent)*22)/100).toFixed(2)
 const handlePromoCode = async (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
-
     const response = await fetch('/promo', {
         method: 'POST',
         body: formData,
@@ -59,7 +58,8 @@ const handlePromoCode = async (event) => {
                 inputElement.classList.add('is-valid')
                 inputElement.classList.remove('is-invalid')
                 sessionStorage.setItem('promoCode', formData.get('promoCode'))
-                finalPrice.textContent = (parseFloat(finalPrice.textContent) - (parseFloat(finalPrice.textContent) / 10)).toFixed(2)
+                finalPrice.textContent = (parseFloat(totalPrice.textContent) - (parseFloat(totalPrice.textContent) / 10)).toFixed(2)
+                ivatot.textContent = ((parseFloat(totalPrice.textContent)*22)/100).toFixed(2)
             } else {
                 inputElement.classList.add('is-invalid')
                 inputElement.classList.remove('is-valid')

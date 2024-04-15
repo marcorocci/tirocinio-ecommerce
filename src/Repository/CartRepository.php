@@ -51,7 +51,7 @@ class CartRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-            select cart.id, nome, descrizione, prezzo, imagePath, quantita from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
+            select cart.id, nome, descrizione, prezzo, imagePath, quantita, categoria from prodotti inner join cart on cart.idProdotto = prodotti.id order by aggiunto;
             ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -77,7 +77,23 @@ class CartRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
 
     }
+    public function carusel($categoria){
+        $car = $this->getEntityManager()->getConnection();
 
+        $sql = '
+        SELECT * FROM prodotti WHERE categoria = :categoria
+        ';
+        
+       
+        $stmt = $car->prepare($sql); 
+        $stmt->bindValue(':categoria', $categoria);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+
+    }
+    
 
 
 

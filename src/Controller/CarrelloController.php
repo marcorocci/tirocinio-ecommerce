@@ -19,15 +19,31 @@ class CarrelloController extends AbstractController
 
     public function cart() {
         
-        $result = $this->cartRepository->findByName(); 
-        $tot = $this->cartRepository->totalprice();
+        $result = $this->cartRepository->findByName();
+        $categories = [];
         
+        for ($i = 0; $i < count($result); $i++)
+        {
+           $categories [] = $result[$i]["categoria"];
+        }
+
+        $carusel = [];
+
+        foreach ($categories as $i)
+        {
+            $carusel [] = $this->cartRepository->carusel($i); 
+        }
+
+        $tot = $this->cartRepository->totalprice();
+
         return $this->render("cart/cart.html.twig", [
             "products" => $result,
-            "tot"=> json_encode ($tot)
+            "tot"=> json_encode ($tot), 
+            "carusel" => ($carusel)
             
         ]); 
     }
+
     
     public function handlePost(Request $request) {
         $postData = $request->request->all();

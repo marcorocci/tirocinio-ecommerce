@@ -54,9 +54,46 @@
 						</div>
 					</div>
 				</li>
-			{% endfor %}
+				{% endfor %}
+
 		</div>
+
 		<div class="recap px-5">
+			<div id="carosello">
+			<div id ="correlati"><h5 class ="text-success">Potrebbe interessarti anche:</h5></div>
+			{% if carusel|length > 0 %}		
+				<div id="carouselExample" class="carousel slide">
+					<div class="carousel-inner d-flex justify-content-center mt-5">
+						{% for p in carusel %}
+							{% for c in p %}
+								{% if c == carusel [0][0] %}
+									<div class="carousel-item active">
+										<a href="{{path('app_prodotti')}}">
+											<img src= {{c.imagePath}} class="w-25" alt="...">
+										</a>
+									</div>
+								{% endif %}
+								{% if c != carusel [0][0] %}
+									<div class="carousel-item ">
+										<a href="{{path('app_prodotti')}}">
+											<img src= {{c.imagePath}} class="w-25" alt="...">
+										</a>	
+									</div>
+								{% endif %}									
+							{% endfor %}
+						{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="text-dark">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="text-dark">Next</span>
+					</button>
+				</div>
+			{% endif %}
+			</div>
 			<div class="checkout">
 				<ul class="list-group">
 					<li class="list-group-item tot">Sub Totale: <div><span id="totalPrice"></span><span>€</span></div></li>
